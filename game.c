@@ -1,22 +1,44 @@
 #include "game.h"
 
+// Global dice cup (shared across all turns)
+static DiceCup game_cup;
+static int cup_initialized = 0;
+
 int play_turn(int player_id) {
     int brains = 0;
     int shotguns = 0;
     int footsteps = 0;
     
+    // Initialize cup on first use
+    if (!cup_initialized) {
+        init_dice_cup(&game_cup);
+        cup_initialized = 1;
+        printf("\n=== DICE CUP INITIALIZED ===\n");
+        printf("Cup contains: %d Green, %d Yellow, %d Red dice\n", 
+               TOTAL_GREEN_DICE, TOTAL_YELLOW_DICE, TOTAL_RED_DICE);
+    }
+    
     printf("\n%s's turn:\n", get_player_name(player_id));
+    printf("Cup status: %d Green, %d Yellow, %d Red dice remaining\n",
+           game_cup.green_dice, game_cup.yellow_dice, game_cup.red_dice);
     
     while (shotguns < 3) {
-        // Always roll exactly 3 dice
-        printf("Rolling 3 dice... ");
+        // Draw 3 dice from the cup
+        int drawn_dice[DICE_PER_ROLL];
+        draw_dice_from_cup(&game_cup, drawn_dice);
+        
+        printf("\nDrew dice: ");
+        for (int i = 0; i < DICE_PER_ROLL; i++) {
+            printf("%s ", get_dice_color_name(drawn_dice[i]));
+        }
+        printf("\nRolling... ");
         
         int new_brains = 0;
         int new_shotguns = 0;
         int new_footsteps = 0;
         
-        for (int i = 0; i < 3; i++) {
-            int face = roll_die();
+        for (int i = 0; i < DICE_PER_ROLL; i++) {
+            int face = roll_specific_die(drawn_dice[i]);
             printf("%s ", get_face_symbol(face));
             
             switch (face) {

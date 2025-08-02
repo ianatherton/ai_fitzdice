@@ -11,6 +11,12 @@
 #define WINNING_SCORE 13
 #define MAX_TURNS 100
 
+// Dice Cup Constants
+#define TOTAL_GREEN_DICE 6
+#define TOTAL_YELLOW_DICE 4
+#define TOTAL_RED_DICE 3
+#define TOTAL_DICE (TOTAL_GREEN_DICE + TOTAL_YELLOW_DICE + TOTAL_RED_DICE)
+
 // Dice Face Types
 #define BRAIN 0
 #define SHOTGUN 1
@@ -42,13 +48,28 @@ extern int PLAYER_AGGRESSIVENESS[NUM_PLAYERS];
 extern const char* FACE_SYMBOLS[3];
 extern const char* FACE_NAMES[3];
 
+// Dice Cup Structure
+typedef struct {
+    int green_dice;
+    int yellow_dice;
+    int red_dice;
+} DiceCup;
+
 // Function declarations (implementations moved to appropriate .c files)
 int roll_die();
+int roll_specific_die(int dice_color);
 int is_busted(int shotguns);
 int should_stop(int brains, int player_id);
 int has_won(int score);
 const char* get_player_name(int player_id);
 const char* get_face_symbol(int face);
 const char* get_face_name(int face);
+const char* get_dice_color_name(int dice_color);
+
+// Dice Cup Functions
+void init_dice_cup(DiceCup* cup);
+int draw_dice_from_cup(DiceCup* cup, int drawn_dice[DICE_PER_ROLL]);
+void refill_dice_cup(DiceCup* cup);
+int get_total_dice_in_cup(const DiceCup* cup);
 
 #endif // CONSTANTS_H

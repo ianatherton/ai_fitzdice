@@ -39,9 +39,9 @@ The dice have 3 symbols:
 *Footprints* - they escaped. Keep your feet dice in front of you. If you 
 choose to roll again, you will re-roll these along with enough new ones to bring the total to 3.
 
-*green dice* [brain, brain, brain, footstep, footstep, shotgun]
-*yellow dice* [brain, brain, footstep, footstep, shotgun, shotgun]
-*red dice* [brain, footstep, footstep, shotgun, shotgun, shotgun]
+'easy'*green dice*(6 total) [brain, brain, brain, footstep, footstep, shotgun]
+'medium'*yellow dice*(4 total) [brain, brain, footstep, footstep, shotgun, shotgun]
+'hard'*red dice*(3 total) [brain, footstep, footstep, shotgun, shotgun, shotgun]
 
 If you rolled 3 shotguns, your turn is over. Otherwise, you can choose to stop and score, or continue.
 
