@@ -17,6 +17,14 @@
 #define TOTAL_RED_DICE 3
 #define TOTAL_DICE (TOTAL_GREEN_DICE + TOTAL_YELLOW_DICE + TOTAL_RED_DICE)
 
+// ANSI Color Codes
+#define COLOR_RESET "\033[0m"
+#define COLOR_GREEN "\033[32m"
+#define COLOR_YELLOW "\033[33m"
+#define COLOR_RED "\033[31m"
+#define COLOR_BOLD "\033[1m"
+#define COLOR_CYAN "\033[36m"
+
 // Dice Face Types
 #define BRAIN 0
 #define SHOTGUN 1
@@ -66,10 +74,19 @@ const char* get_face_symbol(int face);
 const char* get_face_name(int face);
 const char* get_dice_color_name(int dice_color);
 
+// Menu Options
+#define MENU_PLAY_AGAIN 1
+#define MENU_CHANGE_STRATEGY 2
+#define MENU_EXIT 3
+
 // Dice Cup Functions
 void init_dice_cup(DiceCup* cup);
 int draw_dice_from_cup(DiceCup* cup, int drawn_dice[DICE_PER_ROLL]);
 void refill_dice_cup(DiceCup* cup);
 int get_total_dice_in_cup(const DiceCup* cup);
+
+// Menu Functions
+int show_menu();
+void run_game_loop();
 
 #endif // CONSTANTS_H

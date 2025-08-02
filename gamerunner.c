@@ -104,3 +104,62 @@ int find_winner(int scores[]) {
     
     return winner;
 }
+
+int show_menu() {
+    int choice;
+    
+    printf("\n" COLOR_CYAN COLOR_BOLD "=== GAME MENU ===" COLOR_RESET "\n");
+    printf("1. " COLOR_GREEN "Play Again" COLOR_RESET "\n");
+    printf("2. " COLOR_YELLOW "Change Strategy" COLOR_RESET " (reset player settings)\n");
+    printf("3. " COLOR_RED "Exit" COLOR_RESET "\n");
+    printf("\nEnter your choice (1-3): ");
+    
+    while (scanf("%d", &choice) != 1 || choice < 1 || choice > 3) {
+        // Clear invalid input
+        while (getchar() != '\n');
+        printf("Invalid choice! Please enter 1, 2, or 3: ");
+    }
+    
+    return choice;
+}
+
+void run_game_loop() {
+    int continue_playing = 1;
+    int settings_initialized = 0;
+    
+    printf(COLOR_BOLD COLOR_CYAN "Welcome to ZDICE - Zombie Dice Simulator!" COLOR_RESET "\n\n");
+    
+    while (continue_playing) {
+        // Get player settings if not initialized or if user chose to change strategy
+        if (!settings_initialized) {
+            get_player_settings();
+            settings_initialized = 1;
+        }
+        
+        // Game state
+        int scores[NUM_PLAYERS];
+        
+        // Play one complete game
+        play_game(scores);
+        
+        // Display final results
+        print_game_results(scores);
+        
+        // Show menu and handle user choice
+        int choice = show_menu();
+        
+        switch (choice) {
+            case MENU_PLAY_AGAIN:
+                printf("\n" COLOR_GREEN "Starting new game with same settings..." COLOR_RESET "\n");
+                break;
+            case MENU_CHANGE_STRATEGY:
+                printf("\n" COLOR_YELLOW "Resetting player settings..." COLOR_RESET "\n");
+                settings_initialized = 0;
+                break;
+            case MENU_EXIT:
+                printf("\n" COLOR_CYAN "Thanks for playing ZDICE!" COLOR_RESET "\n");
+                continue_playing = 0;
+                break;
+        }
+    }
+}

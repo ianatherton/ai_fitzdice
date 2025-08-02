@@ -44,12 +44,12 @@ const char* get_face_name(int face) {
     return "Unknown";
 }
 
-// Utility function to get dice color name
+// Utility function to get dice color name (with colors)
 const char* get_dice_color_name(int dice_color) {
     switch (dice_color) {
-        case GREEN_EASY: return "Green";
-        case YELLOW_MEDIUM: return "Yellow";
-        case RED_HARD: return "Red";
+        case GREEN_EASY: return COLOR_GREEN "Green" COLOR_RESET;
+        case YELLOW_MEDIUM: return COLOR_YELLOW "Yellow" COLOR_RESET;
+        case RED_HARD: return COLOR_RED "Red" COLOR_RESET;
         default: return "Unknown";
     }
 }

@@ -4,17 +4,8 @@ int main() {
     // Initialize random seed
     srand(time(NULL));
     
-    // Game state
-    int scores[NUM_PLAYERS];
-    
-    // Get player settings
-    get_player_settings();
-    
-    // Play one complete game
-    play_game(scores);
-    
-    // Display final results
-    print_game_results(scores);
+    // Run the main game loop with menu system
+    run_game_loop();
     
     return 0;
 }

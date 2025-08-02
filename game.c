@@ -13,13 +13,13 @@ int play_turn(int player_id) {
     if (!cup_initialized) {
         init_dice_cup(&game_cup);
         cup_initialized = 1;
-        printf("\n=== DICE CUP INITIALIZED ===\n");
-        printf("Cup contains: %d Green, %d Yellow, %d Red dice\n", 
+        printf("\n" COLOR_BOLD COLOR_CYAN "=== DICE CUP INITIALIZED ===" COLOR_RESET "\n");
+        printf("Cup contains: %d " COLOR_GREEN "Green" COLOR_RESET ", %d " COLOR_YELLOW "Yellow" COLOR_RESET ", %d " COLOR_RED "Red" COLOR_RESET " dice\n", 
                TOTAL_GREEN_DICE, TOTAL_YELLOW_DICE, TOTAL_RED_DICE);
     }
     
     printf("\n%s's turn:\n", get_player_name(player_id));
-    printf("Cup status: %d Green, %d Yellow, %d Red dice remaining\n",
+    printf("Cup status: %d " COLOR_GREEN "Green" COLOR_RESET ", %d " COLOR_YELLOW "Yellow" COLOR_RESET ", %d " COLOR_RED "Red" COLOR_RESET " dice remaining\n",
            game_cup.green_dice, game_cup.yellow_dice, game_cup.red_dice);
     
     while (shotguns < 3) {
